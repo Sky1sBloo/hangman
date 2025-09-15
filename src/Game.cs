@@ -1,3 +1,6 @@
+/**
+ * Handles the game loop
+ */
 public class Game
 {
     public string CorrectWord { get; private set; }
