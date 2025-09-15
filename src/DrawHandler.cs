@@ -1,3 +1,6 @@
+/**
+ * Handles Game UI
+ */
 public class DrawHandler
 {
     private string correctWord;

@@ -1,3 +1,6 @@
+/**
+ * Handles Lives system and the Stickman Drawing
+ */
 public class Stickman
 {
     public int Lives
