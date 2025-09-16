@@ -15,6 +15,14 @@ public class WordPicker
         while (line != null)
         {
             lines.Add(line);
+
+            foreach (char c in line)
+            {
+                if (!Char.IsLetter(c) && c != ' ')
+                {
+                    throw new InvalidDataException("Text contains non alphabetic values");
+                }
+            }
             line = streamReader.ReadLine();
         }
 
