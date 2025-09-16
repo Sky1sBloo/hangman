@@ -14,7 +14,7 @@ public class Game
 
     public Game(string wordToGuess)
     {
-        CorrectWord = wordToGuess;
+        CorrectWord = wordToGuess.ToLower();
         guessedLetters = new();
         stickman = new();
         drawHandler = new(CorrectWord, guessedLetters, stickman);
@@ -37,10 +37,13 @@ public class Game
     {
         foreach (char c in input)
         {
-            if (guessedLetters.Contains(c)) continue;
+            char loweredC = Char.ToLower(c);
+            if (!char.IsLetter(loweredC))  continue;
+            if (guessedLetters.Contains(loweredC)) continue;
 
-            guessedLetters.Add(c);
-            if (CorrectWord.Contains(c))
+
+            guessedLetters.Add(loweredC);
+            if (CorrectWord.Contains(loweredC))
             {
                 if (IsWon()) EndGame(true);
             }
@@ -57,6 +60,7 @@ public class Game
     {
         foreach (char c in CorrectWord)
         {
+            if (c == ' ') continue;
             if (!guessedLetters.Contains(c))
             {
                 return false;
@@ -68,7 +72,7 @@ public class Game
     public void EndGame(bool won)
     {
         gameRunning = false;
-        if (won)  drawHandler.DrawWin();
+        if (won) drawHandler.DrawWin();
         else drawHandler.DrawLost();
     }
 }
