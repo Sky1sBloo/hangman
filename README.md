@@ -6,13 +6,19 @@ Basic Hangman Game using C#
 
 ## Installation
 ### Linux / macOS
-1. Run the project
+1. Add Words.txt and include the possible statements per line
+> The program only supports alphabetical characters. No symbols, period, etc.
+
+2. Run the project
 ```
 dotnet run
 ```
 
 ### Windows
-1. Open `Hangman.sln` in Visual studio **or** run:
+1. Add Words.txt and include the possible statements per line
+> The program only supports alphabetical characters. No symbols, period, etc.
+
+2. Open `Hangman.sln` in Visual studio **or** run:
 ```
 dotnet run
 ```
