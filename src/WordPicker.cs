@@ -6,7 +6,7 @@ public class WordPicker
     /**
      * Picks a line based on filepath
      */
-    public static string PickRandomLine(string filePath, Random randomizer)
+    public static string PickRandomLineFromFile(string filePath, Random randomizer)
     {
         string chosenLine;
         StreamReader streamReader = new(filePath);
