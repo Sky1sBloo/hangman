@@ -12,9 +12,21 @@ public class Game
     private bool gameRunning;
 
 
-    public Game(string wordToGuess)
+    public Game(ProgramSettings programSettings, Random random)
     {
-        CorrectWord = wordToGuess.ToLower();
+        switch (programSettings.WordSource)
+        {
+            case ProgramSettings.WordSources.FromFile:
+                CorrectWord = WordPicker.PickRandomLineFromFile(programSettings.WordSourceValue, random);
+                break;
+            case ProgramSettings.WordSources.SpecificWord:
+                CorrectWord = programSettings.WordSourceValue;
+                break;
+            default:
+                // Just to remove editor warnings
+                throw new InvalidDataException();
+        }
+
         guessedLetters = new();
         stickman = new();
         drawHandler = new(CorrectWord, guessedLetters, stickman);
@@ -38,7 +50,7 @@ public class Game
         foreach (char c in input)
         {
             char loweredC = Char.ToLower(c);
-            if (!char.IsLetter(loweredC))  continue;
+            if (!char.IsLetter(loweredC)) continue;
             if (guessedLetters.Contains(loweredC)) continue;
 
 
