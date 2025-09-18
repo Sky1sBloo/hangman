@@ -1,13 +1,28 @@
-﻿string chosenWord = "";
-Random random = new Random();
+﻿Random random = new Random();
+ProgramSettings? programSettings = null;
+
 try
 {
-    chosenWord = WordPicker.PickRandomLine("Words.txt", random);
+    programSettings = ArgumentHandler.HandleArguments(args);
 }
-catch (Exception)
+catch (ArgumentNullException ex)
 {
-    Console.WriteLine("Cannot access Words.txt");
+    Console.WriteLine(ex.Message);
     Environment.Exit(1);
 }
-Game game = new Game(chosenWord);
-game.StartGame();
+
+if (programSettings == null)
+{
+    Console.WriteLine("Failed to load program settings");
+    Environment.Exit(1);
+}
+
+try
+{
+    Game game = new Game(programSettings, random);
+    game.StartGame();
+}
+catch (InvalidDataException ex)
+{
+    Console.WriteLine(ex.Message);
+}

@@ -6,7 +6,7 @@ public class WordPicker
     /**
      * Picks a line based on filepath
      */
-    public static string PickRandomLine(string filePath, Random randomizer)
+    public static string PickRandomLineFromFile(string filePath, Random randomizer)
     {
         string chosenLine;
         StreamReader streamReader = new(filePath);
@@ -15,14 +15,11 @@ public class WordPicker
         while (line != null)
         {
             lines.Add(line);
-
-            foreach (char c in line)
+            if (!CheckWordIsValid(line))
             {
-                if (!Char.IsLetter(c) && c != ' ')
-                {
-                    throw new InvalidDataException("Text contains non alphabetic values");
-                }
+                throw new InvalidDataException("Text contains non alphabetic values");
             }
+
             line = streamReader.ReadLine();
         }
 
@@ -30,5 +27,17 @@ public class WordPicker
         chosenLine = lines[randomizer.Next(lines.Count)];
 
         return chosenLine;
+    }
+
+    /// <summary>
+    /// Checks if the word is for use in the game
+    /// </summary>
+    public static bool CheckWordIsValid(string word)
+    {
+        foreach (char c in word)
+        {
+            if (!Char.IsLetter(c) && c != ' ') return false;
+        }
+        return true;
     }
 }

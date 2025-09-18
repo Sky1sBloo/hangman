@@ -23,5 +23,12 @@ dotnet run
 dotnet run
 ```
 
+## Arguments
+| Argument | Description |
+| -------- | ----------- |
+| --help   | Prints commands |
+| --file [filename]   | Specifies the file to check for words by line |
+| --word  [word]  | Specifies the word to be used |
+
 ## How to play
 Input letters that you guess is the correct answer. You have 6 lives.
