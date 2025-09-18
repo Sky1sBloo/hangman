@@ -17,5 +17,12 @@ if (programSettings == null)
     Environment.Exit(1);
 }
 
-Game game = new Game(programSettings, random);
-game.StartGame();
+try
+{
+    Game game = new Game(programSettings, random);
+    game.StartGame();
+}
+catch (InvalidDataException ex)
+{
+    Console.WriteLine(ex.Message);
+}

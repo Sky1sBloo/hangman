@@ -20,7 +20,14 @@ public class Game
                 CorrectWord = WordPicker.PickRandomLineFromFile(programSettings.WordSourceValue, random);
                 break;
             case ProgramSettings.WordSources.SpecificWord:
-                CorrectWord = programSettings.WordSourceValue;
+                if (WordPicker.CheckWordIsValid(programSettings.WordSourceValue))
+                {
+                    CorrectWord = programSettings.WordSourceValue.ToLower();
+                }
+                else
+                {
+                    throw new InvalidDataException("Word contains invalid symbols");
+                }
                 break;
             default:
                 // Just to remove editor warnings
